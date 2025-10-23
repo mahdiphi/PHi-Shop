@@ -1,14 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Container from '../container/Container'
+
 
 function Navbar() {
   return (
-    <div className='h-14 border-2 shadow flex justify-between items-center'>
-        <ul className='flex'>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/store">Store</Link></li>
+      <div className='h-14 border-2 shadow flex items-center'>
+    <Container>
+        <div className='flex justify-between'>
+          <ul className='flex'>
+            <li className='mr-4'><Link to="/">Home</Link></li>
+            <li className='mr-4'><Link to="/store">Store</Link></li>
         </ul>
         <button>Store bag</button>
+        </div>
+    </Container>
         </div>
   )
 }
