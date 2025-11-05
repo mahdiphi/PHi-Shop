@@ -13,7 +13,9 @@ function Product() {
           <div className="bg-amber-300 col-span-2 p-4">
             <img className="rounded" src={Pic} alt="" />
             <div>
-              <Button onClick={()=>{alert("Hello")}}>
+              <Button 
+              className="mt-2 w-full py-3"
+              variant= "success">
                 Add to Cart
               </Button>
             </div>

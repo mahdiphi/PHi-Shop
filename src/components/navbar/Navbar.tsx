@@ -12,7 +12,7 @@ function Navbar() {
             <li className='mr-4'><Link to="/">Home</Link></li>
             <li className='mr-4'><Link to="/store">Store</Link></li>
         </ul>
-        <button>Store bag</button>
+        <Link to="/cart"><button>Store Cart</button></Link>
         </div>
     </Container>
         </div>
