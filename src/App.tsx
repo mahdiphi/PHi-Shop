@@ -5,11 +5,14 @@ import "./App.css"
 import Layout from "./components/layout/Layout"
 import Product from "./pages/product/Product"
 import Cart from "./pages/cart/Cart"
+import { ShoppingCartProvider } from "./context/ShoppingCartContext"
+
 
 function App() {
 
   return (
-    <Layout>
+    <ShoppingCartProvider>
+      <Layout>
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/store" element={<Store />}/>
@@ -17,6 +20,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </Layout>
+    </ShoppingCartProvider>
   )
 }
 
