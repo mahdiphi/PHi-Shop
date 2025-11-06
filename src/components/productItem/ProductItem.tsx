@@ -1,18 +1,18 @@
-import Pic from "../../assets/pictures/honor-x9c-cyan.avif";
+import type { IProduct } from "../../types/server";
 
-function ProductItem() {
+type TProductItem = IProduct;
+
+function ProductItem({title, image, price, description}: TProductItem) {
   return (
     <div className="shadow border rounded-t pb-4">
-      <img className="rounded-t" src={Pic} alt="" />
+      <img className="rounded-t" src={image} alt="" />
       <div className="flex justify-between px-4 mt-2">
-        <h3>Product Name</h3>
-        <span>600$</span>
+        <h3 className="line-clamp-1 w-52 font-bold">{title}</h3>
+        <span className="font-bold">{price}$</span>
       </div>
       <div className="px-4 mt-1">
-        <p className="line-clamp-2">
-          Honor x9c is one of the phones i like Honor x9c is one of the phones i
-          like Honor x9c is one of the phones i like Honor x9c is one of the
-          phones i like Honor x9c is one of the phones i like
+        <p className="line-clamp-2 text-gray-500">
+          {description}
         </p>
       </div>
     </div>

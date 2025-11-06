@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Container from "../../components/container/Container";
-import Pic from "../../assets/pictures/honor-x9c-cyan.avif";
 import Button from "../../components/button/Button";
+import { getProduct } from "../../services/api";
+import type { IProduct } from "../../types/server";
 
 function Product() {
-  const params = useParams();
+  const params = useParams<{id: string}>();
+
+  const [product, setProduct] = useState<IProduct>()
+
+  useEffect(()=>{
+    getProduct(params.id as string).then(data=>{
+      setProduct(data)
+    })
+  }, [])
   return (
     <div>
       <Container>
         <div className="h-96 shadow grid grid-cols-12 mt-5">
           <div className="bg-amber-300 col-span-2 p-4">
-            <img className="rounded" src={Pic} alt="" />
+            <img className="rounded" src={product?.image} alt="" />
             <div>
               <Button 
               className="mt-2 w-full py-3"
@@ -21,13 +30,11 @@ function Product() {
             </div>
           </div>
           <div className="bg-gray-800 col-span-10 p-4">
-            <h1 className="text-cyan-50">Product Name</h1>
+            <h1 className="text-cyan-50">{product?.title}</h1>
             <div className="text-cyan-50">
-              <p>Price: $600</p>
+              <p>Price: {product?.price}$</p>
               <p>
-                agaefassssssss eraga gaw4tg4watfegaw4a agaefassssssss eraga
-                gaw4tg4watfegaw4a agaefassssssss eraga gaw4tg4watfegaw4a
-                agaefassssssss eraga gaw4tg4watfegaw4a
+                {product?.description}
               </p>
             </div>
           </div>
