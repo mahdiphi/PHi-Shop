@@ -4,17 +4,24 @@ import Container from "../../components/container/Container";
 import Button from "../../components/button/Button";
 import { getProduct } from "../../services/api";
 import type { IProduct } from "../../types/server";
+import { useShoppingCartContext } from "../../context/ShoppingCartContext";
 
 function Product() {
-  const params = useParams<{id: string}>();
+  const params = useParams<{ id: string }>();
 
-  const [product, setProduct] = useState<IProduct>()
+  const [product, setProduct] = useState<IProduct>();
 
-  useEffect(()=>{
-    getProduct(params.id as string).then(data=>{
-      setProduct(data)
-    })
-  }, [])
+  const { cartItems, handleIncreaseProductQty, handleDecreaseProductQty } =
+    useShoppingCartContext();
+
+  useEffect(() => {
+    getProduct(params.id as string).then((data) => {
+      setProduct(data);
+    });
+  }, []);
+
+  console.log(cartItems);
+
   return (
     <div>
       <Container>
@@ -22,10 +29,23 @@ function Product() {
           <div className="bg-amber-300 col-span-2 p-4">
             <img className="rounded" src={product?.image} alt="" />
             <div>
-              <Button 
-              className="mt-2 w-full py-3"
-              variant= "success">
+              <Button
+                onClick={() =>
+                  handleIncreaseProductQty(parseInt(params.id as string))
+                }
+                className="mt-2 w-full py-3"
+                variant="success"
+              >
                 Add to Cart
+              </Button>
+              <Button
+                onClick={() =>
+                  handleDecreaseProductQty(parseInt(params.id as string))
+                }
+                className="mt-2 w-full py-3"
+                variant="success"
+              >
+                -
               </Button>
             </div>
           </div>
@@ -33,9 +53,7 @@ function Product() {
             <h1 className="text-cyan-50">{product?.title}</h1>
             <div className="text-cyan-50">
               <p>Price: {product?.price}$</p>
-              <p>
-                {product?.description}
-              </p>
+              <p>{product?.description}</p>
             </div>
           </div>
         </div>
