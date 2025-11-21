@@ -11,10 +11,9 @@ function Cart() {
     <div>
         <Container>
       <div>
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
+        {cartItems.map((item) => {
+          return <CartItem {...item} />
+        })}
       </div>
       <div className="bg-gray-200 mt-5">
         <p>Total price: 2,003</p>

@@ -15,6 +15,7 @@ interface IShoppingCartContext {
   handleDecreaseProductQty: (id: number) => void;
   getProductQty: (id: number) => number;
   handleRemoveProduct: (id: number) => void;
+  cartQty: number;
 }
 
 export const ShoppingCartContext = createContext({} as IShoppingCartContext);
@@ -71,6 +72,8 @@ export function ShoppingCartProvider({ children }: IShoppingCartProvider) {
     });
   };
 
+  const cartQty = cartItems.reduce((totalQty, item)=> totalQty + item.qty, 0);
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -79,6 +82,7 @@ export function ShoppingCartProvider({ children }: IShoppingCartProvider) {
         handleDecreaseProductQty,
         getProductQty,
         handleRemoveProduct,
+        cartQty,
       }}
     >
       {children}
