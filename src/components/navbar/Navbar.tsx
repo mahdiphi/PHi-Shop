@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Container from "../container/Container";
 import { useShoppingCartContext } from "../../context/ShoppingCartContext";
+import Button from "../button/Button";
 
 function Navbar() {
-  const { cartQty } = useShoppingCartContext();
+  const { cartQty,handleLogout } = useShoppingCartContext();
 
   return (
     <div className="h-14 border-2 shadow flex items-center">
@@ -23,6 +24,7 @@ function Navbar() {
               {cartQty}
             </span>
             <button className="cursor-pointer">Store Cart</button>
+          <Button onClick={handleLogout}>Logout</Button>
           </Link>
         </div>
       </Container>
